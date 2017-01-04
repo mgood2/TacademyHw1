@@ -74,8 +74,11 @@ class ViewController: UIViewController {
     }
     
     func initialButtonStates(_ leftButton: UIButton, _ rightButton: UIButton){
-        if seq == 0 || seq == imageNames.count-1{
+        if seq == 0{
             leftButton.isEnabled = false
+        }
+        if seq == imageNames.count-1 {
+            rightButton.isEnabled = false
         }
         
     }
