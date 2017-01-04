@@ -74,11 +74,8 @@ class ViewController: UIViewController {
     }
     
     func initialButtonStates(_ leftButton: UIButton, _ rightButton: UIButton){
-        if seq == 0 {
+        if seq == 0 || seq == imageNames.count-1{
             leftButton.isEnabled = false
-        }
-        if seq == imageNames.count-1 {
-            rightButton.isEnabled = false
         }
         
     }
@@ -89,6 +86,9 @@ class ViewController: UIViewController {
             rightButton.isEnabled = true
             leftButton.isEnabled = true
             seq = seq - 1
+            if seq == 0 {
+                leftButton.isEnabled = false
+            }
             self.imageView.image = UIImage(named: imageNames[seq])
         } else {
             leftButton.isEnabled = false
@@ -96,9 +96,12 @@ class ViewController: UIViewController {
     }
     
     func nextImage(_ sender : Any){
-        if seq < imageNames.count-2{
+        if seq < imageNames.count-1{
             leftButton.isEnabled = true
             seq = seq + 1
+            if seq == imageNames.count-1 {
+                rightButton.isEnabled = false
+            }
             self.imageView.image = UIImage(named: imageNames[seq])
         } else {
             rightButton.isEnabled = false
